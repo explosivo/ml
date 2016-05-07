@@ -15,7 +15,7 @@ public:
 	AFighterPlayer();
 
 	uint32 Health;
-	enum State {Idle, Forward, Backward, Punching, Kicking};
+	enum State {Idle, Forward, Backward, Punching, Jumping};
 	uint32 PlayerState;
 
 	// Called when the game starts or when spawned
@@ -29,6 +29,6 @@ public:
 
 	void MoveRight(float Value);
 	void Punch();
-	void Kick();
+	virtual void Jump() override;
 	
 };

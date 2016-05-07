@@ -37,7 +37,7 @@ void AFighterPlayer::BeginPlay()
 void AFighterPlayer::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
-	if (PlayerState != State::Idle && !GetCharacterMovement()->CurrentRootMotion.HasVelocity)
+	if (PlayerState != State::Idle) // && there is no velocity )
 		PlayerState = State::Idle;
 }
 
@@ -46,7 +46,7 @@ void AFighterPlayer::SetupPlayerInputComponent(class UInputComponent* InputCompo
 {
 	Super::SetupPlayerInputComponent(InputComponent);
 	InputComponent->BindAction("Punch", IE_Pressed, this, &AFighterPlayer::Punch);
-	InputComponent->BindAction("Kick", IE_Pressed, this, &AFighterPlayer::Kick);
+	InputComponent->BindAction("Jump", IE_Pressed, this, &AFighterPlayer::Jump);
 
 	InputComponent->BindAxis("MoveRight", this, &AFighterPlayer::MoveRight);
 }
@@ -66,7 +66,8 @@ void AFighterPlayer::Punch()
 	PlayerState = State::Punching;
 }
 
-void AFighterPlayer::Kick()
+void AFighterPlayer::Jump()
 {
-	PlayerState = State::Kicking;
+	PlayerState = State::Jumping;
+	Super::Jump();
 }
