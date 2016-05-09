@@ -3,6 +3,7 @@
 #include "fighter.h"
 #include "FighterPlayer.h"
 #include "fighterGameMode.h"
+#include "FighterGameState.h"
 #include "FighterAIController.h"
 
 // Sets default values
@@ -75,6 +76,7 @@ void AFighterPlayer::SetupPlayerInputComponent(class UInputComponent* InputCompo
 void AFighterPlayer::LogData()
 {
 	AfighterGameMode *FighterGameMode = Cast<AfighterGameMode>(GetWorld()->GetAuthGameMode());
+	AFighterGameState *FighterGameState = Cast<AFighterGameState>(GetWorld()->GameState);
 	AFighterPlayer *OtherPlayer = FighterGameMode->Player2;
 	FColor c = FColor::Green;
 	int32 PlayerNumber = 1;
@@ -86,7 +88,8 @@ void AFighterPlayer::LogData()
 	}
 	if (!OtherPlayer)
 		return;
-	FString Data = FString::Printf(TEXT("%d %f %d %d %d"), FighterPlayerState, FighterGameMode->GetDistanceBetweenPlayers(), OtherPlayer->FighterPlayerState, OtherPlayer->Health);
+	//PlayerState Distance PlayerHealth AgentState AgentHealth RemainingTime
+	FString Data = FString::Printf(TEXT("%d %f %d %d %d %d"), FighterPlayerState, FighterGameMode->GetDistanceBetweenPlayers(), Health, OtherPlayer->FighterPlayerState, OtherPlayer->Health, FighterGameState->RemainingTime);
 	FighterGameMode->LogData(PlayerNumber, Data);
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, c, Data);
 }

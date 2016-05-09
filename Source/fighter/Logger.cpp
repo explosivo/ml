@@ -44,4 +44,5 @@ void Logger::Flush(int WinningPlayer)
 	}
 	Player1Data.clear();
 	Player2Data.clear();
+	outFile.close();
 }
