@@ -22,7 +22,7 @@ AfighterGameMode::AfighterGameMode()
 
 	wGameUI = GameUIClass.Class;
 
-	bUsingAI = false;
+	bUsingAI = true;
 
 	logger = new Logger();
 

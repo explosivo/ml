@@ -18,7 +18,7 @@ void Logger::AddData(int Player, string Line)
 	}
 	else if (Player == 2)
 	{
-		Player1Data.push_back(Line);
+		Player2Data.push_back(Line);
 	}
 }
 

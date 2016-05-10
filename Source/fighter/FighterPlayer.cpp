@@ -56,10 +56,11 @@ void AFighterPlayer::BeginPlay()
 void AFighterPlayer::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
+	LogData();
 	if (!bIsPunching && FighterPlayerState != State::Idle  && GetCharacterMovement()->Velocity.SizeSquared() <= 0)
 	{
 		FighterPlayerState = State::Idle;
-		LogData();
+		//LogData();
 	}
 }
 
@@ -82,12 +83,13 @@ void AFighterPlayer::LogData()
 	int32 PlayerNumber = 1;
 	if (!bIsPlayer1)
 	{
-		AFighterPlayer *OtherPlayer = FighterGameMode->Player1;
+		OtherPlayer = FighterGameMode->Player1;
 		c = FColor::Red;
 		PlayerNumber = 2;
 	}
-	if (!OtherPlayer)
+	if (!OtherPlayer) {
 		return;
+	}
 	//PlayerState Distance PlayerHealth AgentState AgentHealth RemainingTime
 	FString Data = FString::Printf(TEXT("%d %f %d %d %d %d"), FighterPlayerState, FighterGameMode->GetDistanceBetweenPlayers(), Health, OtherPlayer->FighterPlayerState, OtherPlayer->Health, FighterGameState->RemainingTime);
 	FighterGameMode->LogData(PlayerNumber, Data);
@@ -106,12 +108,12 @@ void AFighterPlayer::MoveRight(float Value)
 				if (Value > 0 && FighterPlayerState != State::Forward)
 				{
 					FighterPlayerState = State::Forward;
-					LogData();
+					//LogData();
 				}
 				else if (Value < 0 && FighterPlayerState != State::Backward)
 				{
 					FighterPlayerState = State::Backward;
-					LogData();
+					//LogData();
 				}
 			}
 			else
@@ -119,12 +121,12 @@ void AFighterPlayer::MoveRight(float Value)
 				if (Value < 0 && FighterPlayerState != State::Forward)
 				{
 					FighterPlayerState = State::Forward;
-					LogData();
+					//LogData();
 				}
 				else if (Value > 0 && FighterPlayerState != State::Backward)
 				{
 					FighterPlayerState = State::Backward;
-					LogData();
+					//LogData();
 				}
 			}
 		}
@@ -141,7 +143,7 @@ void AFighterPlayer::Punch()
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Punch Happens")));
 	FighterPlayerState = State::Punching;
 	bIsPunching = true;
-	LogData();
+	////LogData();
 	PunchEvent();
 }
 
@@ -165,6 +167,6 @@ bool AFighterPlayer::IsDead()
 void AFighterPlayer::Jump()
 {
 	FighterPlayerState = State::Jumping;
-	LogData();
+	//LogData();
 	Super::Jump();
 }

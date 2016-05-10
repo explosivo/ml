@@ -14,6 +14,9 @@ class FIGHTER_API AFighterAIController : public AAIController
 	GENERATED_BODY()
 	
 public:
+	FTimerHandle ChooserDelegate;
+	bool bCanPunchAgain;
+
 	AFighterAIController();	
 
 	// Called when the game starts or when spawned
@@ -21,4 +24,8 @@ public:
 
 	// Called every frame
 	virtual void Tick(float DeltaSeconds) override;
+
+	float Predict();
+
+	void Choose();
 };
