@@ -1,31 +1,21 @@
 #pragma once
 
 #include <cmath>
+#include <cstdlib>
 using namespace std;
 
-struct Input
+static double activation(double x)
 {
-	int playerState, playerHealth, agentHealth, time;
-	double distance;
-};
-
-struct Connection
-{
-	float weight, dWeight;
-};
-
-static double activationFunction(double x)
-{
-	return tanh(x);
+    return 1.0/(1.0 + exp(-x));//tanh(x);
 }
-static double activationFunctionDerivative(double x)
+static double activationDx(double x)
 {
-	return 1.0 - x * x;
+    return activation(x) * (1 - activation(x));//-exp(-x);//1.0 - x * x;
 }
 static double getRandom()
 {
 	return rand() / double(RAND_MAX);
 }
 
-const double eta = 0.15;
-const double alpha = 0.5;
+static double eta = 0.15;
+static double learningrate = 0.00001; //was .5 before
