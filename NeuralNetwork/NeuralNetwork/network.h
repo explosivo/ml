@@ -10,7 +10,7 @@ using namespace std;
 class Network
 {
 public:
-	Network(int totalTrainingSamples);
+	Network(const vector<unsigned> &topology);
 	~Network() {};
 
 	vector<vector<Node>> layers;

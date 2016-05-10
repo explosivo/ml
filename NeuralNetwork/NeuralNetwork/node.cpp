@@ -13,10 +13,10 @@ Node::Node(int numOfOutputs, int index)
 
 void Node::next(const vector<Node> &lastLayer)
 {
-	double sum = 0;
+	double sum = 0.0;
 	for (int i = 0; i < lastLayer.size(); i++)
 	{
-		sum += lastLayer[i].outputWeights[index].weight * lastLayer[i].output;
+		sum += lastLayer[i].output * lastLayer[i].outputWeights[index].weight;
 	}
 	output = activationFunction(sum);
 }
@@ -30,7 +30,7 @@ void Node::getOutputGrad(double target)
 void Node::getHiddenGrad(const vector<Node> &nextLayer)
 {
 	double sum = 0;
-	for (int i = 0; i < nextLayer.size(); i++)
+	for (int i = 0; i < nextLayer.size() - 1; i++)
 	{
 		sum += outputWeights[i].weight * nextLayer[i].gradient;
 	}

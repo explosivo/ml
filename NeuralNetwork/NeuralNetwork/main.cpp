@@ -1,4 +1,4 @@
-/*#include <string>
+#include <string>
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -11,26 +11,31 @@ void readTrainingData();
 
 vector<vector<double>> inputsSet;
 vector<vector<double>> outputsSet;
+void normalize(vector<vector<double>> &set);
 
 int main()
 {
 	readTrainingData();
+	normalize(inputsSet);
 
 	vector<double> res;
-	Network network(inputsSet.size());
+	vector<unsigned> topology;
+	topology.push_back(5);
+	topology.push_back(7);
+	topology.push_back(1);
+	Network network(topology);
 	for (int i = 0; i < inputsSet.size(); i++)
 	{
 		network.forwardPropagate(inputsSet[i]);
 		network.backPropagate(outputsSet[i]);
 		res = network.getResults();
-		cout << res[0] << " " << res[1] << " " << res[2] << " " << res[3] << " " << res[4] << " | " << outputsSet[i][0] << " " << outputsSet[i][1] << " " << outputsSet[i][2] << " " << outputsSet[i][3] << " " << outputsSet[i][4] << endl;
+		cout << i << " : " << res[0] << " " << outputsSet[i][0] << endl;
 	}
 	system("pause");
 	return 0;
 }
 
-*/
-
+/*
 // neural-net-tutorial.cpp
 // David Miller, http://millermattson.com/dave
 // See the associated video for instructions: http://vimeo.com/19569529
@@ -418,7 +423,7 @@ int main()
 		// Get new input data and feed it forward:
 		if (trainData.getNextInputs(inputVals) != topology[0]) {
 			break;
-		}*/
+		}*//*
 		showVectorVals(": Inputs:", inputsSet[i]);
 		myNet.feedForward(inputsSet[i]);
 
@@ -440,7 +445,7 @@ int main()
 
 	cout << endl << "Done" << endl;
 	system("pause");
-}
+}*/
 
 vector<double> maxSet;
 vector<double> minSet;
