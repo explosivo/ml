@@ -70,7 +70,7 @@ void AFighterAIController::Tick(float DeltaSeconds)
 void AFighterAIController::BeginPlay()
 {
 	Super::BeginPlay();
-	GetWorldTimerManager().SetTimer(ChooserDelegate, this, &AFighterAIController::Choose, 0.3, true);
+	GetWorldTimerManager().SetTimer(ChooserDelegate, this, &AFighterAIController::Choose, 0.1, true);
 }
 
 float AFighterAIController::Predict()

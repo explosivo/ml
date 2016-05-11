@@ -9,13 +9,13 @@ Network::Network()
         layers.push_back(vector<Node>());
     }
     //inputs
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 6; i++)
     {
-        layers[0].push_back(Node(8, i));
+        layers[0].push_back(Node(100, i));
     }
     layers[0].back().output = 1.0;
     //hidden
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < 100; i++)
     {
         layers[1].push_back(Node(2, i));
     }

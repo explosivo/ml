@@ -44,7 +44,7 @@ int main()
 	}
 
     Network test;
-    
+    /*
     loadNetwork(test);
 	for (int i = 0; i < minSet.size(); i ++)
 	{

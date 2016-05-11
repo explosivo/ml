@@ -14,18 +14,17 @@ NNManager::~NNManager()
 
 double NNManager::Normalize(float x, int i)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("%f %f %f"), x, minSet[i], maxSet[i]));
 	return (double)((x - minSet[i]) / (maxSet[i] - minSet[i]));
 }
 
-int NNManager::Predict(float PlayerState, float Distance, float PlayerHealth, float AgentHealth, float RemainingTime)
+int NNManager::Predict(float x1, float x2, float x3, float x4, float x5)
 {
 	vector<double> set;
-	set.push_back(Normalize(PlayerState, 0));
-	set.push_back(Normalize(Distance, 1));
-	set.push_back(Normalize(PlayerHealth, 2));
-	set.push_back(Normalize(AgentHealth, 3));
-	set.push_back(Normalize(RemainingTime, 4));
+	set.push_back(Normalize(x1, 0));
+	//set.push_back(Normalize(x2, 1));
+	set.push_back(Normalize(x3, 1));
+	//set.push_back(Normalize(x4, 3));
+	//set.push_back(Normalize(x5, 4));
 	network.predict(set);
 	return ceil(network.getOutput()*4.0);
 }
