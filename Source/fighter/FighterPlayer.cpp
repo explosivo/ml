@@ -93,7 +93,7 @@ void AFighterPlayer::LogData()
 	//PlayerState Distance PlayerHealth AgentState AgentHealth RemainingTime
 	FString Data = FString::Printf(TEXT("%d %f %d %d %d %d"), FighterPlayerState, FighterGameMode->GetDistanceBetweenPlayers(), Health, OtherPlayer->FighterPlayerState, OtherPlayer->Health, FighterGameState->RemainingTime);
 	FighterGameMode->LogData(PlayerNumber, Data);
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, c, Data);
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, c, Data);
 }
 
 void AFighterPlayer::MoveRight(float Value)
