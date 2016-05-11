@@ -37,13 +37,9 @@ void AFighterAIController::Tick(float DeltaSeconds)
 	if (FighterPlayer)
 	{
 		float x1 = FighterGameMode->GetDistanceBetweenPlayers();
-		float x2 = FighterPlayer->Health;
-		float x3 = OtherPlayer->FighterPlayerState;
-		float x4 = OtherPlayer->Health;
-		float x5 = FighterGameState->RemainingTime;
-		int32 Choice = (int32)NNM->Predict(x1, x2, x3, x4, x5);//FMath::Round(Predict());
-		//Choice = Choice % 3;
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("%d"), Choice));
+		float x2 = OtherPlayer->FighterPlayerState;
+
+		int32 Choice = (int32)NNM->Predict(x1, x2);
 		switch (Choice)
 		{
 		case 0:

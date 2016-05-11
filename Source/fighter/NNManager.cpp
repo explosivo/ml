@@ -17,14 +17,11 @@ double NNManager::Normalize(float x, int i)
 	return (double)((x - minSet[i]) / (maxSet[i] - minSet[i]));
 }
 
-int NNManager::Predict(float x1, float x2, float x3, float x4, float x5)
+int NNManager::Predict(float x1, float x2)
 {
 	vector<double> set;
 	set.push_back(Normalize(x1, 0));
-	//set.push_back(Normalize(x2, 1));
-	set.push_back(Normalize(x3, 1));
-	//set.push_back(Normalize(x4, 3));
-	//set.push_back(Normalize(x5, 4));
+	set.push_back(Normalize(x2, 1));
 	network.predict(set);
 	return ceil(network.getOutput()*4.0);
 }

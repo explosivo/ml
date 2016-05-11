@@ -20,6 +20,6 @@ public:
 	Network network;
 
 	double Normalize(float x, int i);
-	int Predict(float PlayerState, float Distance, float PlayerHealth, float AgentHealth, float RemainingTime);
+	int Predict(float x1, float x2);
 	void LoadNetwork();
 };

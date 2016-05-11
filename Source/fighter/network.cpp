@@ -9,7 +9,7 @@ Network::Network()
         layers.push_back(vector<Node>());
     }
     //inputs
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < 3; i++)
     {
         layers[0].push_back(Node(100, i));
     }
