@@ -5,7 +5,7 @@ Node::Node(int numOfOutputs, int index)
 {
     this->index = index;
     for (int i = 0; i < numOfOutputs; i ++) {
-        weights.push_back(getRandom());
+        weights.push_back(0);
         dWeights.push_back(0.0);
     }
 }
@@ -17,15 +17,5 @@ void Node::push(const vector<Node> &lastLayer)
         sum += lastLayer[i].output *
         lastLayer[i].weights[index];
     }
-    output = activation(sum);
-}
-
-void Node::updateInputWeights(vector<Node> &lastLayer)
-{
-    for (int i = 0; i < lastLayer.size(); i ++)
-    {
-        double dWeight = eta * lastLayer[i].output * gradient + learningrate * lastLayer[i].dWeights[index];
-        lastLayer[i].dWeights[index] = dWeight;
-        lastLayer[i].weights[index] += dWeight;
-    }
+    output = 1.0 / (1.0 + exp(-sum));
 }

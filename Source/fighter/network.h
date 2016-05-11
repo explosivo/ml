@@ -2,7 +2,6 @@
 
 #include <vector>
 #include <cmath>
-#include "types.h"
 #include "node.h"
 
 using namespace std;
@@ -11,10 +10,10 @@ class Network
 {
 public:
     Network();
+	~Network() {};
     
     vector<vector<Node>> layers;
     
-    void predict(const vector<double> &inputs);
-    void backPropagate(double target);
+    void predict(vector<double> &inputs);
     double getOutput();
 };

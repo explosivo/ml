@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include "types.h"
 
 using namespace std;
 
@@ -9,6 +8,7 @@ class Node
 {
 public:
     Node(int numOfOutputs, int index);
+	~Node() {};
     
     vector<double> weights;
     vector<double> dWeights;
@@ -17,5 +17,4 @@ public:
     double output;
     
     void push(const vector<Node> &lastLayer);
-    void updateInputWeights(vector<Node> &prevLayer);
 };
