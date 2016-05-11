@@ -38,20 +38,28 @@ int main()
     
     saveData(network);
     
+	for (int i = 0; i < minSet.size(); i++)
+	{
+		cout << minSet[i] << " " << maxSet[i] << endl;
+	}
+
     Network test;
     
     loadNetwork(test);
-        
-    for (int i = 0; i < inputsSet.size(); i++)
+	for (int i = 0; i < minSet.size(); i ++)
+	{
+		cout << minSet[i] << " " << maxSet[i] << endl;
+	}
+       /* 
+    for (int i = 0; i < 100; i++)
     {
         test.predict(inputsSet[i]);
-        cout << "output: " << network.getOutput();
+        cout << "output: " << test.getOutput();
         cout << " target: " << outputsSet[i];
-        cout << " action: " << ceil(network.getOutput()*4.0) << endl;
-    }
-
-
-    //system("pause");
+        cout << " action: " << ceil(test.getOutput()*4.0) << endl;
+    }*/
+	
+    system("pause");
 }
 
 double max(vector<vector<double>> &set, int ind)
@@ -67,7 +75,7 @@ double max(vector<vector<double>> &set, int ind)
 
 double min(vector<vector<double>> &set, int ind)
 {
-    double minf = -1;
+    double minf = set[0][ind];
     for (int i = 0; i < set.size(); i++)
     {
         if (set[i][ind] < minf)
@@ -87,7 +95,6 @@ void normalize(vector<vector<double>> &set)
             set[j][i] = (set[j][i] - minSet[i]) / (maxSet[i] - minSet[i]);
         }
     }
-    cout << "end" << endl;
 }
 
 void readTrainingData()
@@ -119,16 +126,16 @@ void readTrainingData()
                         inputs.push_back(atof(element.c_str()));
                         break;
                     case 2:
-                        inputs.push_back(atof(element.c_str()));
+                        //inputs.push_back(atof(element.c_str()));
                         break;
                     case 3:
                         inputs.push_back(atoi(element.c_str()));
                         break;
                     case 4:
-                        inputs.push_back(atof(element.c_str()));
+                        //inputs.push_back(atof(element.c_str()));
                         break;
                     case 5:
-                        inputs.push_back(atof(element.c_str()));
+                        //inputs.push_back(atof(element.c_str()));
                         break;
                 };
                 count++;
@@ -156,9 +163,9 @@ void saveData(const Network &network)
     
     //print minSet data
     outFile << minSet[0];
-    for (int i = 1; i < maxSet.size(); i ++)
+    for (int i = 1; i < minSet.size(); i ++)
     {
-        outFile << " " << maxSet[i];
+        outFile << " " << minSet[i];
     }
     outFile << endl;
     
@@ -180,19 +187,40 @@ void saveData(const Network &network)
 
 void loadNetwork(Network &network)
 {
+	minSet.clear();
+	maxSet.clear();
+	cout << minSet.size() << " " << maxSet.size() << endl;
     ifstream dataFile;
     dataFile.open("network.dat");
     
     if (dataFile.is_open())
     {
         string line, element;
+
+		getline(dataFile, line);
+		stringstream ss(line);
+		for (int i = 0; i < 5; i++)
+		{
+			getline(ss, element, ' ');
+
+			maxSet.push_back(atof(element.c_str()));
+		}
+
+		getline(dataFile, line);
+		ss = stringstream(line);
+		for (int i = 0; i < 5; i++)
+		{
+			getline(ss, element, ' ');
+			minSet.push_back(atof(element.c_str()));
+		}
+
         for (int i = 0; i < network.layers.size() - 1; i ++)
         {
             for (int j = 0; j < network.layers[i].size(); j ++)
             {
                 getline(dataFile, line);
-                stringstream ss(line);
-                for (int h = 1; h < network.layers[i][j].weights.size(); h++)
+                ss = stringstream(line);
+                for (int h = 0; h < network.layers[i][j].weights.size(); h++)
                 {
                     getline(ss, element, ' ');
                     network.layers[i][j].weights[h] = atof(element.c_str());

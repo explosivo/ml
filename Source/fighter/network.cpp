@@ -1,3 +1,4 @@
+#include "fighter.h"
 #include "network.h"
 
 Network::Network()

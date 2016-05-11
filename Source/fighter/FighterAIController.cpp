@@ -5,32 +5,48 @@
 #include "FighterPlayer.h"
 #include "FighterGameState.h"
 #include "fighterGameMode.h"
+#include "NNManager.h"
 
 
 AFighterAIController::AFighterAIController()
 {
 	PrimaryActorTick.bCanEverTick = true;
 	bCanPunchAgain = true;
+	NNM = new NNManager();
 }
 
+AFighterAIController::~AFighterAIController()
+{
+	delete NNM;
+}
 
 void AFighterAIController::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	AFighterPlayer *FighterPlayer = Cast<AFighterPlayer>(GetPawn());
+	AfighterGameMode *FighterGameMode = Cast<AfighterGameMode>(GetWorld()->GetAuthGameMode());
+	AFighterGameState *FighterGameState = Cast<AFighterGameState>(GetWorld()->GameState);
+	AFighterPlayer *OtherPlayer = FighterGameMode->Player2;
+	FColor c = FColor::Green;
+	int32 PlayerNumber = 1;
+	if (!FighterPlayer->bIsPlayer1)
+	{
+		AFighterPlayer *OtherPlayer = FighterGameMode->Player1;
+	}
+
 	if (FighterPlayer)
 	{
-		int32 Choice = FMath::Round(Predict());
+		float x1 = FighterGameMode->GetDistanceBetweenPlayers();
+		float x2 = FighterPlayer->Health;
+		float x3 = OtherPlayer->FighterPlayerState;
+		float x4 = OtherPlayer->Health;
+		float x5 = FighterGameState->RemainingTime;
+		int32 Choice = (int32)NNM->Predict(x1, x2, x3, x4, x5);//FMath::Round(Predict());
 		//Choice = Choice % 3;
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("%d"), Choice));
 		switch (Choice)
 		{
 		case 0:
-			if (bCanPunchAgain)
-			{
-				FighterPlayer->Punch();
-				bCanPunchAgain = false;
-			}
 			break;
 		case 1:
 			FighterPlayer->MoveRight(-1.0f);
@@ -39,7 +55,11 @@ void AFighterAIController::Tick(float DeltaSeconds)
 			FighterPlayer->MoveRight(1.0f);
 			break;
 		case 3:
-			//FighterPlayer->Punch();
+			if (bCanPunchAgain)
+			{
+				FighterPlayer->Punch();
+				bCanPunchAgain = false;
+			}
 			break;
 		case 4:
 			FighterPlayer->Jump();

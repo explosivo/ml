@@ -1,11 +1,18 @@
-﻿  network.cpp
-d:\unreal projects\fighter\neuralnetwork\neuralnetwork\network.cpp(50): warning C4018: '<': signed/unsigned mismatch
-d:\unreal projects\fighter\neuralnetwork\neuralnetwork\network.cpp(54): warning C4018: '<': signed/unsigned mismatch
-d:\unreal projects\fighter\neuralnetwork\neuralnetwork\network.cpp(56): warning C4018: '<': signed/unsigned mismatch
-d:\unreal projects\fighter\neuralnetwork\neuralnetwork\network.cpp(66): warning C4018: '<': signed/unsigned mismatch
-d:\unreal projects\fighter\neuralnetwork\neuralnetwork\network.cpp(74): warning C4018: '<': signed/unsigned mismatch
-d:\unreal projects\fighter\neuralnetwork\neuralnetwork\network.cpp(83): warning C4018: '<': signed/unsigned mismatch
-d:\unreal projects\fighter\neuralnetwork\neuralnetwork\network.cpp(91): warning C4018: '<': signed/unsigned mismatch
-d:\unreal projects\fighter\neuralnetwork\neuralnetwork\network.cpp(102): warning C4018: '<': signed/unsigned mismatch
+﻿  main.cpp
+d:\unreal projects\fighter\neuralnetwork\neuralnetwork\main.cpp(30): warning C4018: '<': signed/unsigned mismatch
+d:\unreal projects\fighter\neuralnetwork\neuralnetwork\main.cpp(41): warning C4018: '<': signed/unsigned mismatch
+d:\unreal projects\fighter\neuralnetwork\neuralnetwork\main.cpp(49): warning C4018: '<': signed/unsigned mismatch
+d:\unreal projects\fighter\neuralnetwork\neuralnetwork\main.cpp(68): warning C4018: '<': signed/unsigned mismatch
+d:\unreal projects\fighter\neuralnetwork\neuralnetwork\main.cpp(79): warning C4018: '<': signed/unsigned mismatch
+d:\unreal projects\fighter\neuralnetwork\neuralnetwork\main.cpp(89): warning C4018: '<': signed/unsigned mismatch
+d:\unreal projects\fighter\neuralnetwork\neuralnetwork\main.cpp(93): warning C4018: '<': signed/unsigned mismatch
+d:\unreal projects\fighter\neuralnetwork\neuralnetwork\main.cpp(158): warning C4018: '<': signed/unsigned mismatch
+d:\unreal projects\fighter\neuralnetwork\neuralnetwork\main.cpp(166): warning C4018: '<': signed/unsigned mismatch
+d:\unreal projects\fighter\neuralnetwork\neuralnetwork\main.cpp(173): warning C4018: '<': signed/unsigned mismatch
+d:\unreal projects\fighter\neuralnetwork\neuralnetwork\main.cpp(175): warning C4018: '<': signed/unsigned mismatch
+d:\unreal projects\fighter\neuralnetwork\neuralnetwork\main.cpp(179): warning C4018: '<': signed/unsigned mismatch
+d:\unreal projects\fighter\neuralnetwork\neuralnetwork\main.cpp(217): warning C4018: '<': signed/unsigned mismatch
+d:\unreal projects\fighter\neuralnetwork\neuralnetwork\main.cpp(219): warning C4018: '<': signed/unsigned mismatch
+d:\unreal projects\fighter\neuralnetwork\neuralnetwork\main.cpp(223): warning C4018: '<': signed/unsigned mismatch
   NeuralNetwork.vcxproj -> D:\Unreal Projects\fighter\NeuralNetwork\Debug\NeuralNetwork.exe
   NeuralNetwork.vcxproj -> D:\Unreal Projects\fighter\NeuralNetwork\Debug\NeuralNetwork.pdb (Partial PDB)

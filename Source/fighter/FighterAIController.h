@@ -4,7 +4,6 @@
 
 #include "AIController.h"
 #include "FighterAIController.generated.h"
-
 /**
  * 
  */
@@ -18,6 +17,7 @@ public:
 	bool bCanPunchAgain;
 
 	AFighterAIController();	
+	~AFighterAIController();
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -25,7 +25,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaSeconds) override;
 
-	float Predict();
+	class NNManager *NNM;
 
+	float Predict();
 	void Choose();
 };
